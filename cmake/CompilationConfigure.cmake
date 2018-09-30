@@ -101,6 +101,10 @@ if (ENABLE_LIBEVENT)
   endif()
 endif()
 
+option(UNBUNDLED_LIBARCHIVE
+  "Build libprocess with an installed libarchive version instead of the bundled."
+  FALSE)
+
 option(
   ENABLE_SSL
   "Build libprocess with SSL support."

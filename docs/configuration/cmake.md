@@ -192,4 +192,13 @@ See more information in the [CMake documentation](../cmake.md).
       Windows</a> binary. [default=%PROGRAMFILESX86%/GnuWin32/bin/patch.exe]
       </td>
   </tr>
+  <tr>
+    <td>
+      -DUNBUNDLED_LIBARCHIVE=(TRUE|FALSE)
+    </td>
+    <td>
+      Build libprocess with an installed libarchive version instead of the bundled.
+      [default=FALSE]
+    </td>
+  </tr>
 </table>

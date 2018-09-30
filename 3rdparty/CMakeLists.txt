@@ -996,7 +996,7 @@ set_target_properties(
 # libarchive: Multi-format archive and compression library.
 # https://github.com/libarchive/libarchive
 ###########################################################
-if (WIN32 OR REBUNDLED)
+if (NOT UNBUNDLED_LIBARCHIVE AND (WIN32 OR REBUNDLED))
   EXTERNAL(libarchive ${LIBARCHIVE_VERSION} ${CMAKE_CURRENT_BINARY_DIR})
 
   add_library(libarchive STATIC IMPORTED GLOBAL)
