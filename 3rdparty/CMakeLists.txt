@@ -587,9 +587,11 @@ if (ENABLE_LIBEVENT)
       URL_HASH          ${LIBEVENT_HASH})
   else ()
     find_package(LIBEVENT REQUIRED)
+    add_library(libevent INTERFACE)
 
     foreach (lib ${LIBEVENT_LIBS})
       get_filename_component(LIBEVENT_LIB ${lib} NAME_WE)
+      string(REGEX REPLACE ^lib "" LIBEVENT_LIB ${LIBEVENT_LIB})
       add_library(${LIBEVENT_LIB} SHARED IMPORTED)
       set_target_properties(${LIBEVENT_LIB} PROPERTIES
         IMPORTED_LOCATION ${lib}
