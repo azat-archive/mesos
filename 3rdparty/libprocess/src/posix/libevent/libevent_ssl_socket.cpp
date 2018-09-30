@@ -617,6 +617,8 @@ Future<Nothing> LibeventSSLSocketImpl::connect(const Address& address)
             // Fail the promise since we failed to connect.
             request->promise.fail(
                 "Failed to connect: bufferevent_socket_connect");
+          } else {
+            bufferevent_enable(self->bev, EV_READ|EV_WRITE);
           }
       },
       DISALLOW_SHORT_CIRCUIT);
@@ -1206,6 +1208,7 @@ void LibeventSSLSocketImpl::accept_SSL_callback(AcceptRequest* request)
               &LibeventSSLSocketImpl::send_callback,
               &LibeventSSLSocketImpl::event_callback,
               CHECK_NOTNULL(impl->event_loop_handle));
+          bufferevent_enable(bev, EV_READ|EV_WRITE);
 
           request->promise.set(std::dynamic_pointer_cast<SocketImpl>(impl));
         } else if (events & BEV_EVENT_ERROR) {
